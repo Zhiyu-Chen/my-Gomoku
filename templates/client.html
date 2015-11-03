@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <title>Gomoku</title>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+	<script src="{{ static_url('scripts/gomoku.js') }}" type="application/javascript"></script>
+
+</head>
+<body>
+<canvas id="gomoku" width="950" height="950">
+    Board
+</canvas>
+<script src="{{ static_url('scripts/init.js') }}" type="application/javascript"></script>
+<input type = "text" id="player_id" value="{{ player_id }}">	
+</body>
+</html>
