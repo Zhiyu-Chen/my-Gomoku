@@ -73,6 +73,16 @@ function requestPlay() {
        	if(records[2] == 0)
        		context.fillStyle = "#000000";
         context.fill();
+
+        if (isOver == 1) { 
+        	if (records[2] == 0){
+        		alert('game over ! black wins !');
+        	}
+        	else{
+        		alert('game over ! white wins !');
+        	}
+        	
+        };
 	};
 	websocket.onerror = function (evt) { };
 }
