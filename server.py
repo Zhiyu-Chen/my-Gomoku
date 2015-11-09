@@ -35,6 +35,30 @@ class Gomoku(object):
 
 		return self.isFive(judge)
 
+	def isWinVertical(self,step):
+		judge = []
+		for record in self.records:
+			if step[0] == record[0] and step[2] == record[2]:
+				judge.append((record[1] - 25)/50)
+		return self.isFive(judge)
+
+	def isLeftOblique(self,step):
+		judge = []
+		for record in self.records:
+			if (step[0] + step[1]) == (record[0] + record[1]) and step[2] == record[2]:
+				judge.append((record[0] - 25)/50)
+
+		return self.isFive(judge)
+
+	def isRightOblique(self,step):
+		judge = []
+		for record in self.records:
+			if(step[1] - step[0]) == (record[1] - record[0]) and step[2] == record[2]:
+				judge.append((record[0] - 25)/50)
+
+		return self.isFive(judge)
+
+
 	def isFive(self,judge):
 		count = len(judge)
 		if count < 5:
@@ -49,7 +73,7 @@ class Gomoku(object):
 
 
 	def iswin(self,step):
-		return self.isWinHorizon(step)
+		return self.isWinHorizon(step) or self.isWinVertical(step) or self.isLeftOblique(step) or self.isRightOblique(step)
 
 
 	def addmove(self,step):
@@ -61,6 +85,11 @@ class Gomoku(object):
 				self.isOver = 1
 				print "finished !"
 			self.notifyCallbacks(step)
+
+		#restart
+		if self.isOver == 1:
+			self.records = []
+			self.isOver = 0
  
 	def notifyCallbacks(self,step):
 		for callback in self.callbacks:
